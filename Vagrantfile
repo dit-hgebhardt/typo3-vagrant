@@ -46,6 +46,13 @@ Vagrant.configure("2") do |config|
     override.vm.box_url = "http://files.vagrantup.com/precise64_vmware.box"
   end
 
+  config.vm.provider "vmware_workstation" do |v,override|
+  	override.vm.box = "ipf-precise-vmware"
+    v.vmx["memsize"] = "2048"
+    v.vmx["numvcpus"] = "2"
+    override.vm.box_url = "http://files.vagrantup.com/precise64_vmware.box"
+  end
+
    config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = "./cookbooks"
     #chef.log_level = :debug
